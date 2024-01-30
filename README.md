@@ -15,4 +15,14 @@ How to use
        SECRET= secret
        NODE_ENV="test"
   
-4. run "npm run dev" on both folders and it works in development environment 
+4. run "npm run dev" on both folders and it works in development environment
+
+5. For testing as patient use:
+   
+         username: jmcclane
+         password: 1234
+   
+8. For testing as doctor or admin use:
+   
+         username: admin
+         password: 1234
