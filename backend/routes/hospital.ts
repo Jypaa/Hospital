@@ -11,9 +11,6 @@ export const hospitalRouter = express.Router();
 
 hospitalRouter.use(express.json());
 
-
-
-  
   hospitalRouter.get('/diagnoses', (_req: Request, res: Response,) => {
     const withoutLatin = diagnoses.map(diagnoses => ({ code: diagnoses.code, name: diagnoses.name }));
     res.send(withoutLatin);
@@ -24,9 +21,10 @@ hospitalRouter.use(express.json());
   
   })
   
-  hospitalRouter.get('/api/patients/:id', (req: Request, res: Response,) => {
+  hospitalRouter.get('/patients/:id', (req: Request, res: Response,) => {
     const  patients = patientService.getNonSensitiveEntries();
     const patient = patients.find(patient => patient.id === req.params.id);
+    console.log(patient);
     res.send(patient);
   
   } 

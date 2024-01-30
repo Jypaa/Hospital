@@ -1,17 +1,19 @@
 
-import FrontPage from "./Pages/Logout";
 import LoggedIn from "./Pages/LoggedIn";
+import { useState } from "react";
+import LogOut from "./Pages/Logout";
 
 
 const App = () => {
-  
+  const [role, setRole] = useState(localStorage.getItem('role') || '');
+  const [id, setId] = useState(localStorage.getItem('id') || '');
   if(localStorage.getItem('token')) {
     return (
-      <LoggedIn />  
+      <LoggedIn role={role} id={id}/>  
     );
   } else {
     return (
-      <FrontPage />
+      <LogOut />
     );
   }
 };

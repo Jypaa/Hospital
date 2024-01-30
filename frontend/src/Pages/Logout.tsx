@@ -8,9 +8,10 @@ import patientService from "../services/patients";
 interface User {
     token: string;
     role: string;
+    id: string;
   }
 
-const FrontPage= () => {
+const LogOut= () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
 
@@ -25,8 +26,10 @@ const FrontPage= () => {
                 alert("Wrong credentials");
                 return;
             }
+            console.log(user);
             window.localStorage.setItem('token', user.token);
             window.localStorage.setItem('role', user.role);
+            window.localStorage.setItem('id', user.id );
             window.location.reload();
             window.location.href = "/";             
       }
@@ -58,4 +61,4 @@ const FrontPage= () => {
   )
 };
 
-export default FrontPage;
+export default LogOut;

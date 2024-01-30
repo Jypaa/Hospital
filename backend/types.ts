@@ -10,7 +10,7 @@ export interface User {
     name: string;
     username: string;
     role: Role;
-    password: string;
+    passwordhash: string;
   }
 
   export enum Role {
@@ -26,7 +26,7 @@ export interface UserDocument extends User {}
     id: String,
     name: String,
     username: String,
-    password: String,
+    passwordhash: String,
   });
   
 export const UserModel = mongoose.model<UserDocument>('User', userSchema);

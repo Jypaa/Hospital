@@ -3,16 +3,13 @@ import { EntryFormValues, Patient, PatientFormValues, Entry } from "../types";
 
 import { apiBaseUrl } from "../constants";
 
-
+const config = {
+  headers: { Authorization: 'bearer ' + window.localStorage.getItem('token') },
+}
 
 const getAll = async () => {
   const { data } = await axios.get<Patient[]>(
-    `${apiBaseUrl}/patients`,
-    {
-      headers: {
-        Authorization: `bearer ${localStorage.getItem('token')}`
-      }
-    }
+    `${apiBaseUrl}/patients`, config
   );
 
   return data;
@@ -20,12 +17,7 @@ const getAll = async () => {
 
 const getOne = async (id: string) => {
   const { data } = await axios.get<Patient>(
-    `${apiBaseUrl}/patients/${id}`,
-    {
-      headers: {
-        Authorization: `bearer ${localStorage.getItem('token')}`
-      }
-    }
+    `${apiBaseUrl}/patients/${id}`, config
   );
 
   return data;
@@ -33,12 +25,7 @@ const getOne = async (id: string) => {
 
 const getDiagnoses = async () => {
   const { data } = await axios.get(
-    `${apiBaseUrl}/diagnoses`,
-    {
-      headers: {
-        Authorization: `bearer ${localStorage.getItem('token')}`
-      }
-    }
+    `${apiBaseUrl}/diagnoses`, config
   );
 
   return data;
@@ -54,9 +41,13 @@ const create = async (object: PatientFormValues) => {
 };
 
 const addEntry = async (object: EntryFormValues, id: string) => {
+  
   const { data } = await axios.post<Entry>(
     `${apiBaseUrl}/patients/${id}/entries`,
-    object
+    object,
+    config
+    
+    
   );
 
   return data;

@@ -12,11 +12,18 @@ import patientService from "../../services/patients";
 
 
 
+import {Button,} from '@mui/material';
+
+interface AxiosError extends Error {
+  response: {
+    data: any;
+  };
+}
 
 interface Props{
-    patients:  Patient;
+    patients: Array<Patient>;
     diagnoses: Array<Diagnosis>;
-
+    setPatients: React.Dispatch<React.SetStateAction<Patient[]>>
 }
 
 const EntryDetails = ({ entry} : { entry: any}) => {
@@ -105,10 +112,10 @@ const EntryHeader = ({ entry } : { entry: any }) => {
   }
 }
 
-const PatientPage = ({ patients , diagnoses} : Props) => {
-    
-    const patient = patients
-    console.log(patient);
+const PatientsPage = ({ patients , diagnoses, setPatients} : Props) => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+
   const entries = {
     borderStyle: "solid",
     borderWidth: "1px",
@@ -116,9 +123,26 @@ const PatientPage = ({ patients , diagnoses} : Props) => {
     padding: "5px",
     margin: "5px"
   }
-  
+    const { id } = useParams<{ id: string }>();
+    const patient = patients.find((patient) => patient.id === id);
 
-    
+
+    const submitNewPatientEntry = async (values: EntryFormValues) => {
+      console.log("Tääällä");
+      console.log(values);
+      try {
+        const entry = await patientService.addEntry(values, id || '');
+        const patientIndex = patients.findIndex((patient) => patient.id === id);
+        const updatedPatients = [...patients];
+        updatedPatients[patientIndex].entries.push(entry);
+        setPatients(updatedPatients);
+        setModalOpen(false);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        const errorCode = axiosError.response?.data || 'Unknown error';
+        alert("Error submitting new entry: " + errorCode);
+      }
+    };
 
 
     const getIcon = () => {
@@ -140,7 +164,7 @@ const PatientPage = ({ patients , diagnoses} : Props) => {
             {patient && <h1>{patient.name}{getIcon()}</h1>}
             {patient && <p>ssn: {patient.ssn}</p>}
             {patient && <p>occupation: {patient.occupation}</p>}
-            
+            {modalOpen ? <AddPatientEntryModal modalOpen={modalOpen} onClose={() => setModalOpen(!modalOpen)} onSubmit={() => console.log("submit")}  diagnoses={diagnoses}/> : <div></div>}
             <h2>entries</h2>
             {patient && patient.entries.map((entry) => (
                 <div key={entry.id} style={entries}>
@@ -157,9 +181,16 @@ const PatientPage = ({ patients , diagnoses} : Props) => {
                     <p>Diagnoses by {entry.specialist}</p>
                 </div>
             ))}
-
+          <AddPatientEntryModal
+            modalOpen={modalOpen}
+            onSubmit={submitNewPatientEntry}
+            onClose={() => setModalOpen(!modalOpen)}
+            diagnoses={diagnoses}
+        
+          />
+            <Button variant="contained" onClick={() => setModalOpen(!modalOpen)}>add new entry</Button>
         </div>
     )
 };
 
-export default PatientPage;
+export default PatientsPage;
