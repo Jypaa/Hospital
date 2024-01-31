@@ -16,6 +16,7 @@ interface Props {
 
 
 const LogInForm = ({setusername, setpassword, onCancel, onSubmit }: Props) => {
+
     const [username, setName] = useState('');
     const [password, setPassword] = useState('');
 

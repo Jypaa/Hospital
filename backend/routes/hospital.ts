@@ -2,8 +2,10 @@ import express, { Request, Response } from 'express';
 
 import patients from '../data/patients';
 import diagnoses from '../data/diagnoses';
+import users from '../data/user';
 import { v4 as uuidv4 } from 'uuid';
 import patientService from '../services/patientServices';
+import { Patient } from '../types';
 
 uuidv4();
 
@@ -22,16 +24,24 @@ hospitalRouter.use(express.json());
   })
   
   hospitalRouter.get('/patients/:id', (req: Request, res: Response,) => {
-    const  patients = patientService.getNonSensitiveEntries();
-    const patient = patients.find(patient => patient.id === req.params.id);
-    console.log(patient);
+    console.log("mitä kysellään",req.params);
+    //const patients = patientService.getNonSensitiveEntries();
+    const patient = patientService.getpatient(req.params.id);
+    console.log("Kaikki potilaat getissä",patients)
+    console.log("kaikki käyttäjät",users)
+    if(!patient) {
+      res.status(404).send('Patient not found');
+      return;
+    }
+    console.log("tämä",patient);
     res.send(patient);
   
   } 
   )
   
   hospitalRouter.post('/patients/:id/entries', (req: Request, res: Response,) => {
-    const patient = patients.find((patient) => patient.id === req.params.id);
+    //const patient = patients.find((patient) => patient.id === req.params.id);
+    const patient = patientService.getpatient(req.params.id);
     if (!patient) {
       res.status(404).send('Patient not found');
       return;
@@ -63,21 +73,23 @@ hospitalRouter.use(express.json());
       }
       
     }
-  
-    (patient.entries as any[]).push(newEntry);
+    patientService.addEntry(newEntry);
+    //(patient.entries as any[]).push(newEntry);
     res.send(newEntry);
   });
   
   hospitalRouter.post('/patients', (req: Request, res: Response,) => {
-    const newPatient = {
+    const newPatient: Patient = {
       id: uuidv4(),
       ...req.body,
       entries: []
     }
-    patients.push(newPatient);
+
+    patientService.addPatient(newPatient);
+    //patients.push(newPatient);
     const {ssn, ...rest} = newPatient;
+    console.log("uusi potilas", patients);
     res.send(rest);
-    
   })
   
 

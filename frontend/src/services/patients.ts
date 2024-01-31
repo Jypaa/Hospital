@@ -63,12 +63,31 @@ const login = async (credentials: { username: string, password: string }) => {
   } catch (error) {
     console.error(error);
   }
-
-  
-  
 }
 
+const register = async (credentials: { 
+  username: string, 
+  password: string, 
+  name: string, 
+  ssn: string ,
+  gender: string,
+  occupation: string,
+  dateOfBirth: string  
+}) => {
+  console.log(credentials)
+  try{
+  const { data } = await axios.post<{}>(
+    `${apiBaseUrl}/register`,
+    credentials
+  );
+  return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
 export default {
-  getAll, create, getOne, getDiagnoses, addEntry, login
+  getAll, create, getOne, getDiagnoses, addEntry, login, register
 };
 

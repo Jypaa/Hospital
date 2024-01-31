@@ -14,7 +14,7 @@ interface Props {
 
 
 
-const FrontpageModal = ({username, password, modalOpen, onSubmit, onCancel,  error}: Props) => (
+const LogInpageModal = ({username, password, modalOpen, onSubmit, onCancel,  error}: Props) => (
     <Dialog fullWidth={true} open={modalOpen} onClose={() => onCancel()}>
         <DialogTitle>Log In</DialogTitle>
         <Divider />
@@ -24,4 +24,4 @@ const FrontpageModal = ({username, password, modalOpen, onSubmit, onCancel,  err
     </Dialog>
 );
 
-export default FrontpageModal;
+export default LogInpageModal;

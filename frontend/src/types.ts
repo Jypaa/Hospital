@@ -25,6 +25,15 @@ export interface Diagnosis {
   name: string;
   latin?: string;
 }
+export interface RegisterFormValues {
+  name: string;
+  ssn: string;
+  username: string;
+  password: string;
+  occupation: string;
+  dateOfBirth: string;
+  gender: string;
+}
 
 export enum HealthCheckRating {
   "Healthy" = 0,
