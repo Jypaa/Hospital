@@ -32,16 +32,15 @@ const getDiagnoses = async () => {
 }
 
 const create = async (object: PatientFormValues) => {
+
   const { data } = await axios.post<Patient>(
-    `${apiBaseUrl}/patients`,
-    object
+    `${apiBaseUrl}/patients`,object, config
   );
 
   return data;
 };
 
 const addEntry = async (object: EntryFormValues, id: string) => {
-  
   const { data } = await axios.post<Entry>(
     `${apiBaseUrl}/patients/${id}/entries`,
     object,

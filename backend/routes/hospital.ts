@@ -31,7 +31,6 @@ hospitalRouter.use(express.json());
   )
   
   hospitalRouter.post('/patients/:id/entries', (req: Request, res: Response,) => {
-    console.log(req.body);
     const patient = patients.find((patient) => patient.id === req.params.id);
     if (!patient) {
       res.status(404).send('Patient not found');
@@ -72,11 +71,13 @@ hospitalRouter.use(express.json());
   hospitalRouter.post('/patients', (req: Request, res: Response,) => {
     const newPatient = {
       id: uuidv4(),
-      ...req.body
+      ...req.body,
+      entries: []
     }
     patients.push(newPatient);
-    const {ssn, ...rest} = req.body;
+    const {ssn, ...rest} = newPatient;
     res.send(rest);
+    
   })
   
 

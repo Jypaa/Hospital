@@ -94,12 +94,3 @@ const LoggedIn = ( {role, id}: Props) => {
     }
 
 export default LoggedIn;
-
-/* 
-<Button component={Link} to="/" variant="contained" color="primary">
-          Home
-        </Button>
-        <Button component={Link} to="/" variant="contained" color="primary" onClick={Logout} style={{float: "right"}}>
-          Logout
-        </Button> 
-        */
