@@ -107,7 +107,6 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
             }
         }
         if(type === 'OccupationalHealthcare'){
-            console.log(diagnosesCodes)
             return(
                 <div>
                     <form onSubmit={addpatientEntry}>

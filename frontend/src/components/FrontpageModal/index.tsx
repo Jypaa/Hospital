@@ -8,18 +8,18 @@ interface Props {
     password: Function;
     modalOpen: boolean;
     onSubmit: (values: LogInFormValues) => void; 
-    onClose: () => void;
+    onCancel: () => void;
     error?: string;
 }
 
 
 
-const FrontpageModal = ({username, password, modalOpen, onSubmit, onClose,  error}: Props) => (
-    <Dialog fullWidth={true} open={modalOpen} onClose={() => onClose()}>
-        <DialogTitle>log In</DialogTitle>
+const FrontpageModal = ({username, password, modalOpen, onSubmit, onCancel,  error}: Props) => (
+    <Dialog fullWidth={true} open={modalOpen} onClose={() => onCancel()}>
+        <DialogTitle>Log In</DialogTitle>
         <Divider />
         <DialogContent>
-            <LogInForm setusername={username} setpassword={password} onSubmit={onSubmit} onCancel={onClose}/> 
+            <LogInForm setusername={username} setpassword={password} onSubmit={onSubmit} onCancel={onCancel}/> 
         </DialogContent>
     </Dialog>
 );

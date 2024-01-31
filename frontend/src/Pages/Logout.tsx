@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import { Button, Divider, Container, Typography, Alert } from '@mui/material';
 import LogInForm from "../components/FrontpageModal/LogInForm";
 import patientService from "../services/patients";
+import FrontpageModal from "../components/FrontpageModal";
 
 interface User {
     token: string;
@@ -12,9 +13,11 @@ interface User {
   }
 
 const LogOut= () => {
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
 
+    console.log(modalOpen)
     const logIn = async () => {
         setPassword(password);
         setUser(username);
@@ -49,12 +52,17 @@ const LogOut= () => {
             <Typography variant="h6" style={{ marginBottom: "0.5em" }}>
                 Welcome to Jyri's Hospital here you can find all the information about your diagnoses.
             </Typography>
-            <Button component={Link} to="/login" variant="contained" color="primary">
+            <Button component={Link} onClick={() => setModalOpen(true)} to="/login" variant="contained" color="primary">
                 Login
             </Button>
-                <Routes>
-                    <Route path="/login" element={<LogInForm setusername= {setUser} setpassword= {setPassword} onSubmit={logIn} onCancel={logIn} />} />
-                </Routes>
+
+            <FrontpageModal
+                username= {setUser} 
+                password= {setPassword} 
+                onSubmit={logIn} 
+                onCancel={() => setModalOpen(!modalOpen)}
+                modalOpen={modalOpen}  />
+               
         </Container>
     </Router>
 </div>

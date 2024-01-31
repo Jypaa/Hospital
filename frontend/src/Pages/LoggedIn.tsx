@@ -16,7 +16,7 @@ interface Props {
   id: string;
 }
 
-const LoggedIn = ( {role, id}: Props) => {
+const LoggedIn = ( {role, id,}: Props) => {
     const [patients, setPatients] = useState<Patient[]>([]);
     const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
     const [SinglePatient, setSinglePatient] = useState<Patient>();
