@@ -73,8 +73,7 @@ hospitalRouter.use(express.json());
       }
       
     }
-    patientService.addEntry(newEntry);
-    //(patient.entries as any[]).push(newEntry);
+    patientService.addEntry(newEntry, patient);
     res.send(newEntry);
   });
   

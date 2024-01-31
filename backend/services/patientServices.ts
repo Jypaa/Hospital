@@ -1,6 +1,6 @@
 
 import Patients from "../data/patients";
-import { NonSensitivePatient, Patient } from "../types";
+import {Entry, NonSensitivePatient, Patient } from "../types";
 
 
 const patients: Patient[] = Patients.map(patient => ({ ...patient  }));
@@ -25,8 +25,14 @@ const getpatient = (id: string): Patient | undefined => {
 const addPatient = (patient: Patient) => {
     patients.push(patient);
 }
-const addEntry = (entry: Patient) => {
-    patients.push(entry);
+const addEntry = (entry: Entry, patient: Patient) => {
+    if (patient && patient.entries) {
+        patient.entries.push(entry);
+      } else {
+        throw new Error('Patient not found');
+      }
+
+    
 }
 
 export default {
