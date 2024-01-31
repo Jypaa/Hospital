@@ -8,6 +8,7 @@ type NonSensitiveHealthCheckEntry = Omit<HealthCheckEntry, 'ssn'>;
 export interface User {
     id: string;
     name: string;
+    ssn: string;
     username: string;
     role: Role;
     passwordhash: string;
@@ -19,12 +20,21 @@ export interface User {
     Admin = 'admin',
 
   }
+  export interface RegisterFormValues {
+    id: string;
+    name: string;
+    ssn: string;
+    username: string;
+    role: Role;
+    passwordhash: string;
+  }
   
 export interface UserDocument extends User {}
   
   const userSchema = new Schema<UserDocument>({
     id: String,
     name: String,
+    ssn: String,
     username: String,
     passwordhash: String,
   });
