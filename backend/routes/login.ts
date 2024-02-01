@@ -21,7 +21,6 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
         
         const passwordCorrect = password === null ? false : await bcrypt.compare(password, user.passwordhash);
 
-        console.log('user', user);
         if (!passwordCorrect) {
             return res.status(401).json({ message: 'Invalid password' });
         }

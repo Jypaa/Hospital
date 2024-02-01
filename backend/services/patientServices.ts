@@ -4,7 +4,7 @@ import {Entry, NonSensitivePatient, Patient } from "../types";
 
 
 const patients: Patient[] = Patients.map(patient => ({ ...patient  }));
-console.log("patientsService",patients);
+
 
 const getNonSensitiveEntries = (): NonSensitivePatient[] => {
     return patients.map(({id,name,ssn,occupation,gender,dateOfBirth,entries}) => ({

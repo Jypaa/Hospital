@@ -24,16 +24,15 @@ hospitalRouter.use(express.json());
   })
   
   hospitalRouter.get('/patients/:id', (req: Request, res: Response,) => {
-    console.log("mitä kysellään",req.params);
+
     //const patients = patientService.getNonSensitiveEntries();
     const patient = patientService.getpatient(req.params.id);
-    console.log("Kaikki potilaat getissä",patients)
-    console.log("kaikki käyttäjät",users)
+
     if(!patient) {
       res.status(404).send('Patient not found');
       return;
     }
-    console.log("tämä",patient);
+
     res.send(patient);
   
   } 
@@ -87,7 +86,6 @@ hospitalRouter.use(express.json());
     patientService.addPatient(newPatient);
     //patients.push(newPatient);
     const {ssn, ...rest} = newPatient;
-    console.log("uusi potilas", patients);
     res.send(rest);
   })
   

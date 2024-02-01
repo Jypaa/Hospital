@@ -8,7 +8,7 @@ import 'dotenv/config'
 import { v4 as uuidv4 } from 'uuid';
 import patients from '../data/patients';
 import patientServices from '../services/patientServices';
-import { set } from 'mongoose';
+
 
 export const registerRouter = express.Router();
 registerRouter.use(express.json());
@@ -16,7 +16,7 @@ registerRouter.use(express.json());
 
 registerRouter.post('/register', async (req: Request, res: Response) => {
     let id ='';
-    console.log(req.body)
+
     const { username, password, ssn ,name} = req.body;
     const role = Role.Patient;
 
@@ -45,8 +45,6 @@ registerRouter.post('/register', async (req: Request, res: Response) => {
             }
             await patientServices.addPatient(newPatient);
             id = newPatient.id;
-            console.log("uusi potilas", newPatient);
-            console.log("kaikki potilaat", patients);
         }
 
         const saltRounds = 10;
@@ -63,7 +61,6 @@ registerRouter.post('/register', async (req: Request, res: Response) => {
         }
 
         users.push(newUser);
-        console.log("kaikki käyttäjät",users);
 
         const token = jwt.sign({ userId: newUser.id, username: newUser.username }, process.env.SECRET, { expiresIn: 60*60 });
         return res.json({ token, role: newUser.role, id: newUser.id});
