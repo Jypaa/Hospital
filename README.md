@@ -1,6 +1,6 @@
 # Hospital
 
-wanted to create bit further from one of school task example
+I wanted to continue one of the course projects further
 
 How to use 
 
