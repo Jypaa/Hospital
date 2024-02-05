@@ -84,11 +84,11 @@ const LogOut= () => {
             <Typography variant="h6" style={{ marginBottom: "0.5em" }}>
                 Welcome to Jyri's Hospital here you can find all the information about your diagnoses.
             </Typography>
-            <Button component={Link} onClick={() => setModalOpenLogin(true)} to="/login" variant="contained" color="primary">
+            <Button className="Login" component={Link} onClick={() => setModalOpenLogin(true)} to="/login" variant="contained" color="primary">
                 Login
             </Button>
             <br></br>
-            <Button component={Link} onClick={()=> setModalOpenregister(true)} to="/register" variant="contained" color="primary">
+            <Button className="Register" component={Link} onClick={()=> setModalOpenregister(true)} to="/register" variant="contained" color="primary">
                 Register
             </Button>
 

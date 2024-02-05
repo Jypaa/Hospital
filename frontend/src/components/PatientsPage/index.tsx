@@ -188,7 +188,7 @@ const PatientsPage = ({ patients , diagnoses, setPatients} : Props) => {
             diagnoses={diagnoses}
         
           />
-            <Button variant="contained" onClick={() => setModalOpen(!modalOpen)}>add new entry</Button>
+            <Button className="newEntry" variant="contained" onClick={() => setModalOpen(!modalOpen)}>add new entry</Button>
         </div>
     )
 };

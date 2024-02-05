@@ -312,6 +312,7 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                         <Grid item xs={12}>
                             <InputLabel id="demo-simple-select-label">Type</InputLabel>
                             <Select
+                                className="HealthCheckType"
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={type}
@@ -323,8 +324,10 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                                 <MenuItem value={'OccupationalHealthcare'}>OccupationalHealthcare</MenuItem>
                             </Select>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} 
+                        >
                             <TextField
+                                className="HealtCheckDescription"
                                 label="Description"
                                 fullWidth 
                                 value={description}
@@ -333,7 +336,7 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                            
+                                className="HealthCheckDate"
                                 fullWidth 
                                 type="date"
                                 value={date}
@@ -342,6 +345,7 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                className="HealthCheckSpecialist"
                                 label="Specialist"
                                 fullWidth 
                                 value={specialist}
@@ -351,10 +355,11 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                         <FormControl sx={{ width: 1 }}>
                                 <InputLabel id="demo-multiple-checkbox-label">Codes</InputLabel>
                                     <Select
+                                    className="HealthCheckCodes"
                                         labelId="demo-multiple-checkbox-label"
                                         id="demo-multiple-checkbox"
                                         multiple
-                              
+                                        type="checkbox"
                                         value={Patientdiagnoses}
                                         onChange={handleChange}
                                         input={<OutlinedInput label="Codes" />}
@@ -371,13 +376,14 @@ const AddPatientEntryForm = ({ onSubmit, onCancel, diagnoses}: Props) => {
                             </FormControl>
                         <Grid>
                             <TextField
+                            className="HealthCheckRating"
                                 label="HealthCheckRating"
                                 fullWidth 
                                 onChange={({ target }) => setHealthCheckRating(Number(target.value))}
                                 />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button variant="contained" color="primary" type="submit">Submit</Button>
+                            <Button className="healthCheckSubmit" variant="contained" color="primary" type="submit">Submit</Button>
                             <Button variant="contained" color="secondary" onClick={onCancel}>Cancel</Button>
                         </Grid>
                     </Grid>

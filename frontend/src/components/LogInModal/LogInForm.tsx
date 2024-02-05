@@ -63,6 +63,7 @@ const LogInForm = ({setusername, setpassword, onCancel, onSubmit }: Props) => {
           </Grid>
           <Grid item>
             <Button
+            className="ModalLogin"
               style={{
                 float: "right",
               }}
