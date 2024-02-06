@@ -21,7 +21,7 @@ interface Props {
 
 const RegisterpageModal = ({name,occupation,ssn,dateofBirth,gender,username, password, modalOpen, onSubmit, onCancel,  error}: Props) => (
     <Dialog fullWidth={true} open={modalOpen} onClose={() => onCancel()}>
-        <DialogTitle>Log In</DialogTitle>
+        <DialogTitle>Register</DialogTitle>
         <Divider />
         <DialogContent>
             <RegisterForm 

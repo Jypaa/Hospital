@@ -3,8 +3,6 @@ import { useState, SyntheticEvent } from "react";
 import {  TextField, InputLabel, MenuItem, Select, Grid, Button, SelectChangeEvent } from '@mui/material';
 
 import {Gender, RegisterFormValues } from "../../types";
-import patientService from "../../services/patients";
-import { link } from "fs";
 
 interface Props {
     setname: Function;
@@ -67,18 +65,21 @@ const RegisterForm = ({setname, setoccupation,setssn,setdateofBirth, setgender, 
     <div>
       <form onSubmit={Register}>
       <TextField
+          className="name_register"
           label="Name"
           fullWidth 
           value={name}
           onChange={({ target }) => {setName(target.value), setname(target.value)}}
         />
         <TextField
+          className="ssn_register"
           label="Social security number"
           fullWidth
           value={ssn}
           onChange={({ target }) => {setSsn(target.value),setssn(target.value)}}
         />
         <TextField
+          className="dateOfBirth_register"
           label="Date of birth"
           placeholder="YYYY-MM-DD"
           fullWidth
@@ -86,6 +87,7 @@ const RegisterForm = ({setname, setoccupation,setssn,setdateofBirth, setgender, 
           onChange={({ target }) => {setDateOfBirth(target.value), setdateofBirth(target.value)}}
         />
         <TextField
+          className="occupation_register"
           label="Occupation"
           fullWidth
           value={occupation}
@@ -93,6 +95,7 @@ const RegisterForm = ({setname, setoccupation,setssn,setdateofBirth, setgender, 
         />
 
         <Select
+          className="gender_register"
           label="Gender"
           fullWidth
           value={gender}
@@ -108,12 +111,14 @@ const RegisterForm = ({setname, setoccupation,setssn,setdateofBirth, setgender, 
         )}
         </Select>
         <TextField
+          className="username_register"
           label="Username"
           fullWidth 
           value={username}
           onChange={({ target }) => {setUsernameName(target.value), setusername(target.value)}}
         />
         <TextField
+          className="password_register"
           label="Password"
           type="password"
           fullWidth
@@ -135,6 +140,7 @@ const RegisterForm = ({setname, setoccupation,setssn,setdateofBirth, setgender, 
           </Grid>
           <Grid item>
             <Button
+              className="register_register"
               style={{
                 float: "right",
               }}
