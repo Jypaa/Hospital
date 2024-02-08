@@ -27,6 +27,7 @@ hospitalRouter.use(express.json());
 
     //const patients = patientService.getNonSensitiveEntries();
     const patient = patientService.getpatient(req.params.id);
+    console.log(patient);
 
     if(!patient) {
       res.status(404).send('Patient not found');
