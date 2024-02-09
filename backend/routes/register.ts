@@ -8,10 +8,12 @@ import 'dotenv/config'
 import { v4 as uuidv4 } from 'uuid';
 import patients from '../data/patients';
 import patientServices from '../services/patientServices';
-
+import axios from 'axios';
+import registerService from '../services/userServices';
 
 export const registerRouter = express.Router();
 registerRouter.use(express.json());
+
 
 
 registerRouter.post('/register', async (req: Request, res: Response) => {
@@ -59,8 +61,9 @@ registerRouter.post('/register', async (req: Request, res: Response) => {
             role: role,
             passwordhash,
         }
-
+        
         users.push(newUser);
+        registerService.registerUser(newUser);
 
         const token = jwt.sign({ userId: newUser.id, username: newUser.username }, process.env.SECRET, { expiresIn: 60*60 });
         return res.json({ token, role: newUser.role, id: newUser.id});

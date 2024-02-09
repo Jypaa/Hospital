@@ -3,7 +3,7 @@ import Patients from "../data/patients";
 require('dotenv').config();
 import {Entry, NonSensitivePatient, Patient } from "../types";
 console.log(process.env.BASE_URL);
-const baseURL = process.env.BASE_URL || 'undefined';
+const baseURL = process.env.BASE_URL_PATIENT || 'undefined';
 let patients: Patient[] = []
 
 function getPatients() {

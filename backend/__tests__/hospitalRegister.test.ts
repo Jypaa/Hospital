@@ -63,18 +63,23 @@ test('Register user',async ()  => {
 afterAll(() => {
     async function clearData() {
       try {
-        const response = await axios.get('http://localhost:3001/patients');
-        const patients = response.data;
+        const response1 = await axios.get('http://localhost:3001/patients');
+        const patients1 = response1.data;
+        const response2 = await axios.get('http://localhost:3001/users');
+        const users1 = response2.data;
     
-        for (const patient of patients) {
+        for (const patient of patients1) {
           await axios.delete(`http://localhost:3001/patients/${patient.id}`);
+        }
+        for (const user of users1) {
+          await axios.delete(`http://localhost:3001/users/${user.id}`);
         }
       } catch (error) {
         console.error('Error clearing data:', error);
       }
     }
 
-    async function addNewValues() {
+    async function addNewValuesPatient() {
       try {
         const newPatients = [
             {
@@ -194,10 +199,39 @@ afterAll(() => {
           console.error('Error adding new values:', error);
         }
     }
+    async function addNewValuesUsers()  {
+      try {
+        const newUsers = [
+          {
+            "id": "d2773336-f723-11e9-8f0b-362b9e155667",
+            "name": "John McClane",
+            "ssn": "090786-122X",
+            "username": "jmcclane",
+            "role": "patient",
+            "passwordhash": "$2b$10$ogdMP/H2bGOVr/K1WwEADeRnkCDH7/S/5V.SGx9ZeHVk4Mii/CuZm"
+          },
+          {
+            "id": "d2773598-f723-11e9-8f0b-362b9e155668",
+            "name": "admin",
+            "ssn": "123456-7890",
+            "username": "admin",
+            "role": "admin",
+            "passwordhash": "$2b$10$ogdMP/H2bGOVr/K1WwEADeRnkCDH7/S/5V.SGx9ZeHVk4Mii/CuZm"
+          }
+        ]
+        for (const user of newUsers) {
+          const response = await axios.post('http://localhost:3001/users', user);
+        }
+      } catch (error) {
+        console.error('Error adding new values:', error);
+      }
+
+    }
     
     clearData()
       .then(() => {
-        addNewValues();
+        addNewValuesPatient();
+        addNewValuesUsers();
       });
     
         
