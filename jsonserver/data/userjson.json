@@ -1,7 +1,6 @@
 
 
-{
-    "users":[
+[
         {   
         "id": "d2773336-f723-11e9-8f0b-362b9e155667",
         "name": "John McClane",
@@ -19,4 +18,3 @@
         "passwordhash": "$2b$10$ogdMP/H2bGOVr/K1WwEADeRnkCDH7/S/5V.SGx9ZeHVk4Mii/CuZm"
     }
     ]
-}

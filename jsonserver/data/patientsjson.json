@@ -1,5 +1,5 @@
-{
-  "patients": [
+
+  [
     {
       "id": "d2773336-f723-11e9-8f0b-362b9e155667",
       "name": "John McClane",
@@ -35,6 +35,17 @@
           "date": "2021-09-07",
           "specialist": "doctor",
           "employerName": "HyPD"
+        },
+        {
+          "id": "08e2b289-c6a8-4dd0-a9f6-8098a0e326a3",
+          "diagnosisCodes": [
+            "M24.2"
+          ],
+          "description": "kaikki kunnossa",
+          "date": "2021-01-01",
+          "specialist": "admin",
+          "type": "HealthCheck",
+          "healthCheckRating": 0
         }
       ]
     },
@@ -107,6 +118,26 @@
           "healthCheckRating": 1
         }
       ]
+    },
+    {
+      "id": "db41a4ed-6f12-4edc-bcf2-7045458ed7f0",
+      "name": "testi",
+      "ssn": "126489-2265",
+      "occupation": "poliisi",
+      "gender": "male",
+      "dateOfBirth": "2021-01-01",
+      "entries": [
+        {
+          "id": "b4ae06cf-a2a1-488c-b0ec-c54b340da17e",
+          "diagnosisCodes": [
+            "M24.2"
+          ],
+          "description": "kaikki kunnossa",
+          "date": "2021-01-01",
+          "specialist": "testaaja",
+          "type": "HealthCheck",
+          "healthCheckRating": 0
+        }
+      ]
     }
   ]
-}
