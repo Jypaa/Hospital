@@ -16,8 +16,9 @@ How to use
           NODE_ENV=
           PORT=3000
           BASE_URL= http://localhost:3001/patients
+          BASE_URL_USERS= http://localhost:3001/users
 
-4. Run "json-server --watch data/patientsjson.json --port 3001" in backend folder
+4. Run "node server.js" in jsonserver folder to run database
    
 5. Run "npm run dev" in both folders (backend and frontend) and it works in development environment
    
@@ -32,6 +33,9 @@ How to use
  
            Username: admin
            Password: 1234
+
+   - You can also create whole new user by using register option and it will automatically make user a patient.
+
 
 To run backend tests and reset the JSON server to default values, run "npm run test" in the backend folder.
 
