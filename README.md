@@ -15,7 +15,7 @@ How to use
           SECRET= secret
           NODE_ENV=
           PORT=3000
-          BASE_URL= http://localhost:3001/patients
+          BASE_URL_PATIENT= http://localhost:3001/patients
           BASE_URL_USERS= http://localhost:3001/users
 
 4. Run "node server.js" in jsonserver folder to run database
