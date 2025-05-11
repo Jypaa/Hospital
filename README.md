@@ -17,6 +17,7 @@ How to use
           PORT=3000
           BASE_URL_PATIENT= http://localhost:3001/patients
           BASE_URL_USERS= http://localhost:3001/users
+          BASE_URL_DIAGNOSES= http://localhost:3001/diagnoses
 
 4. Run "node server.js" in jsonserver folder to run database
    
