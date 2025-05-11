@@ -1,9 +1,8 @@
 import axios from 'axios';
-import Patients from "../data(unused)/patients";
 require('dotenv').config();
 import {Entry, NonSensitivePatient, Patient } from "../types";
-console.log(process.env.BASE_URL);
 const baseURL = process.env.BASE_URL_PATIENT || 'undefined';
+const baseURLDIAG = process.env.BASE_URL_DIAGNOSES || 'undefined';
 let patients: Patient[] = []
 
 function getPatients() {
@@ -71,8 +70,18 @@ const addEntry = (entry: Entry, patient: Patient) => {
         throw new Error('Patient not found');
       }
 }
+const getDiagnoses = () => {
+    return axios.get(`${baseURLDIAG}`)
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error('Error fetching diagnoses:', error);
+            throw error;
+        });
+}
 
 export default {
-    getNonSensitiveEntries,addPatient,getpatient,addEntry
+    getNonSensitiveEntries,addPatient,getpatient,addEntry,getDiagnoses
 };
 

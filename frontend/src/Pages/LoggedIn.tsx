@@ -37,7 +37,6 @@ const LoggedIn = ( {role, id,}: Props) => {
         const fetchPatientList = async () => {
           const Singlepatient = await patientService.getOne(id);
           setSinglePatient(Singlepatient);
-          console.log(patients);
           const diagnoses = await patientService.getDiagnoses();
           setDiagnoses(diagnoses);
         };

@@ -20,7 +20,7 @@ interface Props{
 }
 
 const EntryDetails = ({ entry} : { entry: any}) => {
-  console.log(entry);
+
   const healthy ={
     color: "green"
   }
@@ -108,7 +108,7 @@ const EntryHeader = ({ entry } : { entry: any }) => {
 const PatientPage = ({ patients , diagnoses} : Props) => {
     
     const patient = patients
-    console.log(patient);
+
   const entries = {
     borderStyle: "solid",
     borderWidth: "1px",

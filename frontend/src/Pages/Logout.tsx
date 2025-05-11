@@ -37,7 +37,7 @@ const LogOut= () => {
                 alert("Wrong credentials");
                 return;
             }
-            console.log(user);
+
             window.localStorage.setItem('token', user.token);
             window.localStorage.setItem('role', user.role);
             window.localStorage.setItem('id', user.id );
@@ -59,10 +59,10 @@ const LogOut= () => {
             }) as User
             if (!user) {
                 alert("Wrong credentials");
-                console.log(user);
+
                 return;
             }
-            console.log(user);
+
             await window.localStorage.setItem('token', user.token);
             await window.localStorage.setItem('role', user.role);
             await window.localStorage.setItem('id', user.id );

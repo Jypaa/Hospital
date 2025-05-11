@@ -1,8 +1,4 @@
 import express, { Request, Response } from 'express';
-
-import patients from '../data(unused)/patients';
-import diagnoses from '../data(unused)/diagnoses';
-import users from '../data(unused)/user';
 import { v4 as uuidv4 } from 'uuid';
 import patientService from '../services/patientServices';
 import { Patient } from '../types';
@@ -13,34 +9,32 @@ export const hospitalRouter = express.Router();
 
 hospitalRouter.use(express.json());
 
-  hospitalRouter.get('/diagnoses', (_req: Request, res: Response,) => {
-    const withoutLatin = diagnoses.map(diagnoses => ({ code: diagnoses.code, name: diagnoses.name }));
-    res.send(withoutLatin);
-  })
-  
+  hospitalRouter.get('/diagnoses', async (_req: Request, res: Response) => {
+    try {
+      const diagnoses = await patientService.getDiagnoses();
+      const withoutLatin = diagnoses.map((diagnosis: { code: any; name: any; }) => ({ code: diagnosis.code, name: diagnosis.name }));
+      res.send(withoutLatin);
+    } catch (error) {
+      res.status(500).send('Failed to fetch diagnoses');
+    }
+  }); 
+
   hospitalRouter.get('/patients', (_req: Request, res: Response,) => {
     res.send(patientService.getNonSensitiveEntries());
   
   })
   
   hospitalRouter.get('/patients/:id', (req: Request, res: Response,) => {
-
-    //const patients = patientService.getNonSensitiveEntries();
     const patient = patientService.getpatient(req.params.id);
-    //console.log(patient);
-
     if(!patient) {
       res.status(404).send('Patient not found');
       return;
     }
-
     res.send(patient);
   
-  } 
-  )
+  } )
   
   hospitalRouter.post('/patients/:id/entries', (req: Request, res: Response,) => {
-    //const patient = patients.find((patient) => patient.id === req.params.id);
     const patient = patientService.getpatient(req.params.id);
     if (!patient) {
       res.status(404).send('Patient not found');
@@ -85,7 +79,6 @@ hospitalRouter.use(express.json());
     }
 
     patientService.addPatient(newPatient);
-    //patients.push(newPatient);
     const {ssn, ...rest} = newPatient;
     res.send(rest);
   })

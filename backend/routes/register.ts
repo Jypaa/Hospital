@@ -1,14 +1,13 @@
 const jwt = require('jsonwebtoken')
 
 import express, { Request, Response } from 'express';
-import { Gender, Patient, RegisterFormValues, Role, UserDocument } from '../types';
+import {Patient, RegisterFormValues, Role} from '../types';
 import users from '../data(unused)/user';
 import bcrypt from 'bcrypt';
 import 'dotenv/config'
 import { v4 as uuidv4 } from 'uuid';
 import patients from '../data(unused)/patients';
 import patientServices from '../services/patientServices';
-import axios from 'axios';
 import registerService from '../services/userServices';
 
 export const registerRouter = express.Router();

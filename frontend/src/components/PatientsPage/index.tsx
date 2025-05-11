@@ -27,7 +27,7 @@ interface Props{
 }
 
 const EntryDetails = ({ entry} : { entry: any}) => {
-  console.log(entry);
+
   const healthy ={
     color: "green"
   }
@@ -128,8 +128,6 @@ const PatientsPage = ({ patients , diagnoses, setPatients} : Props) => {
 
 
     const submitNewPatientEntry = async (values: EntryFormValues) => {
-      console.log("Tääällä");
-      console.log(values);
       try {
         const entry = await patientService.addEntry(values, id || '');
         const patientIndex = patients.findIndex((patient) => patient.id === id);
@@ -164,7 +162,7 @@ const PatientsPage = ({ patients , diagnoses, setPatients} : Props) => {
             {patient && <h1>{patient.name}{getIcon()}</h1>}
             {patient && <p>ssn: {patient.ssn}</p>}
             {patient && <p>occupation: {patient.occupation}</p>}
-            {modalOpen ? <AddPatientEntryModal modalOpen={modalOpen} onClose={() => setModalOpen(!modalOpen)} onSubmit={() => console.log("submit")}  diagnoses={diagnoses}/> : <div></div>}
+            {modalOpen ? <AddPatientEntryModal modalOpen={modalOpen} onClose={() => setModalOpen(!modalOpen)} diagnoses={diagnoses}/> : <div></div>}
             <h2>entries</h2>
             {patient && patient.entries.map((entry) => (
                 <div key={entry.id} style={entries}>
