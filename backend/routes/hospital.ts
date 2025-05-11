@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 
-import patients from '../data/patients';
-import diagnoses from '../data/diagnoses';
-import users from '../data/user';
+import patients from '../data(unused)/patients';
+import diagnoses from '../data(unused)/diagnoses';
+import users from '../data(unused)/user';
 import { v4 as uuidv4 } from 'uuid';
 import patientService from '../services/patientServices';
 import { Patient } from '../types';
@@ -27,7 +27,7 @@ hospitalRouter.use(express.json());
 
     //const patients = patientService.getNonSensitiveEntries();
     const patient = patientService.getpatient(req.params.id);
-    console.log(patient);
+    //console.log(patient);
 
     if(!patient) {
       res.status(404).send('Patient not found');

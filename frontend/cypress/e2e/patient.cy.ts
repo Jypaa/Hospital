@@ -37,7 +37,7 @@ describe('Log in as admin and add entry', () => {
     cy.get('.HealthCheckSpecialist').eq(1).click().type('admin');
     cy.get('.HealthCheckCodes').eq(1).click()
     cy.get('input[type="checkbox"]').eq(0).check();
-    cy.get('body').click()
+    cy.get('body').click();
     cy.get('.HealthCheckRating').eq(1).click().type('0');
     cy.get('.healthCheckSubmit').eq(1).click()
     cy.get('p').should('contain', 'kaikki kunnossa')  

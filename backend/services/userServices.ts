@@ -7,8 +7,8 @@ const baseURL = process.env.BASE_URL_USERS || 'undefined';
 
 
 const registerUser = async (newUser:RegisterFormValues) => {
-    console.log("Onko oikein",newUser);
-    console.log("Onko oikein",baseURL);
+    //console.log("Onko oikein",newUser);
+    //console.log("Onko oikein",baseURL);
     await axios.post(baseURL, newUser);
 
 }

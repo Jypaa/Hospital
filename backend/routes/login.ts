@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 import express, { Request, Response } from 'express';
 import { UserDocument } from '../types';
-import users from '../data/user';
+import users from '../data(unused)/user';
 import bcrypt from 'bcrypt';
 import 'dotenv/config'
 
@@ -10,7 +10,6 @@ loginRouter.use(express.json());
 
 loginRouter.post('/login', async (req: Request, res: Response) => {
     const { username, password } = req.body;
-  
     try {
 
         const user: UserDocument | undefined = users.find(u => u.username === username );

@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken')
 
 import express, { Request, Response } from 'express';
 import { Gender, Patient, RegisterFormValues, Role, UserDocument } from '../types';
-import users from '../data/user';
+import users from '../data(unused)/user';
 import bcrypt from 'bcrypt';
 import 'dotenv/config'
 import { v4 as uuidv4 } from 'uuid';
-import patients from '../data/patients';
+import patients from '../data(unused)/patients';
 import patientServices from '../services/patientServices';
 import axios from 'axios';
 import registerService from '../services/userServices';
@@ -27,12 +27,14 @@ registerRouter.post('/register', async (req: Request, res: Response) => {
         const userssn: RegisterFormValues | undefined = users.find(u => u.ssn === ssn );
 
         if (userssn) {
+
             return res.status(401).json({ message: 'user with same ssn already exist' });
         }
         
         const user: RegisterFormValues | undefined = users.find(u => u.username === username );
 
         if (user) {
+
             return res.status(401).json({ message: 'user with same username already exist' });
         }
         if (!patients.find(p => p.ssn === ssn)) {

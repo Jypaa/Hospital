@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Patients from "../data/patients";
+import Patients from "../data(unused)/patients";
 require('dotenv').config();
 import {Entry, NonSensitivePatient, Patient } from "../types";
 console.log(process.env.BASE_URL);

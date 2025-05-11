@@ -53,7 +53,7 @@ const addEntry = async (object: EntryFormValues, id: string) => {
 }
 
 const login = async (credentials: { username: string, password: string }) => {
-  console.log(credentials);
+  //console.log(credentials);
   try{
   const { data } = await axios.post<{}>(
     `${apiBaseUrl}/login`,
@@ -74,7 +74,7 @@ const register = async (credentials: {
   occupation: string,
   dateOfBirth: string  
 }) => {
-  console.log(credentials)
+  //console.log(credentials)
   try{
   const { data } = await axios.post<{}>(
     `${apiBaseUrl}/register`,
